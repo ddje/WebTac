@@ -2,21 +2,21 @@
     if (isset($_POST["btnContactUs"])) {
         $name = $_POST['name'];
         $email = $_POST['email'];
-        $subject = intval($_POST['subject']);
+        $subject = $_POST['subject'];
 		$message = $_POST['message'];
-        $from = 'Demo Contact Form'; 
+        $from = "From : ".$_POST['email']."";
         $to = 'contact@webtac.fr'; 
-        $subject = 'Message from Contact Demo ';
         
-        $body = "From: $name\n E-Mail: $email\n Message:\n $message";
+        $body = "From: $name\nE-Mail: $email\nMessage: $message";
  
  
 // If there are no errors, send the email
 
     if (mail ($to, $subject, $body, $from)) {
-        $result='<div class="alert alert-success">Thank You! I will be in touch</div>';
+        echo'Email envoy&eacute;. Retournez sur notre site internet <a href="http://www.webtac.fr">http://www.webtac.fr</a>';
+		header ("Refresh: 5;URL=http://www.webtac.fr");
     } else {
-        $result='<div class="alert alert-danger">Sorry there was an error sending your message. Please try again later</div>';
+        echo 'Arf, un problème est survenu pendant l\'envoi de l\'email. Retentez votre chance dans un instant.';
     }
 }
 
